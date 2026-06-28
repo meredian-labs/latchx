@@ -29,11 +29,11 @@ Do not treat primary packages as hidden internals once they become release targe
 Current primary packages:
 
 ```txt
-@latch/core   shared audit/policy/risk engine, published from latch-core
-@latch/latchx safer npx replacement CLI, published from latchx
+latch-core shared audit/policy/risk engine, published from latch-core
+latchx     safer npx replacement CLI, published from latchx
 ```
 
-`@latch/core` and `@latch/latchx` should be independently publishable and documentable. `latchx` may depend on the published `@latch/core`, but the `latchx` GitHub repository must not absorb the whole `latch-core` project as ordinary tracked source.
+`latch-core` and `latchx` should be independently publishable and documentable. `latchx` may depend on the published `latch-core`, but the `latchx` GitHub repository must not absorb the whole `latch-core` project as ordinary tracked source.
 
 Local development may keep `packages/core/` checked out beside `packages/latchx/`, but the root `latchx` git repo ignores `packages/core/`. The core package has its own remote:
 
@@ -107,18 +107,18 @@ npm run typecheck
 npm run build
 npm test
 npm run demo:latchx
-npm pack -w @latch/latchx --dry-run
+npm pack -w latchx --dry-run
 ```
 
 If local npm cache permissions break `npm pack`, use a temporary npm cache:
 
 ```bash
-npm --cache /private/tmp/latch-npm-cache pack -w @latch/latchx --dry-run
+npm --cache /private/tmp/latch-npm-cache pack -w latchx --dry-run
 ```
 
 ## Release Scope
 
-The v0.1 release target is `@latch/latchx`.
+The v0.1 release target is `latchx`.
 
 Before release, verify:
 

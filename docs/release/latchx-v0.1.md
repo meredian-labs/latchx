@@ -21,11 +21,11 @@ npm run typecheck
 npm run build
 npm test
 npm run demo:latchx
-npm pack -w @latch/core --dry-run
-npm pack -w @latch/latchx --dry-run
+npm pack -w latch-core --dry-run
+npm pack -w @meredian-labs/latchx --dry-run
 ```
 
-Confirm the `@latch/latchx` dry run includes:
+Confirm the `@meredian-labs/latchx` dry run includes:
 
 - `dist/index.js`
 - `dist/index.d.ts`
@@ -45,19 +45,19 @@ Confirm the bin points to:
 
 ## Global Install Smoke Test
 
-`@latch/core` must be published before `@latch/latchx`, because `latchx` depends on it.
+`latch-core` must be published before `latchx`, because `latchx` depends on it.
 
 ```bash
 npm run build
-npm pack -w @latch/core
-npm pack -w @latch/latchx
+npm pack -w latch-core
+npm pack -w @meredian-labs/latchx
 npm install -g ./packages/core/latch-core-0.1.0.tgz
-npm install -g ./packages/latchx/latch-latchx-0.1.0.tgz
+npm install -g ./packages/latchx/meredian-labs-latchx-0.1.0.tgz
 latchx doctor
 latchx audit is-number
 latchx audit is-number --json --ci
 latchx cowsay --yes -- hello
-npm uninstall -g @latch/latchx
+npm uninstall -g @meredian-labs/latchx
 ```
 
 The `cowsay` command intentionally executes only after `latchx` audits the exact package version and `--yes` approves execution.

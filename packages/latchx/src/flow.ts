@@ -1,4 +1,4 @@
-import type { PolicyDecision } from "@latch/core";
+import type { PolicyDecision } from "latch-core";
 
 export type FlowMode = "audit" | "run";
 

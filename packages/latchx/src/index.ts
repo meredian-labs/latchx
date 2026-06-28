@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import prompts from "prompts";
-import { auditPackage, evaluatePolicy, formatHumanReport, loadPolicy, runNpmExec } from "@latch/core";
-import type { LatchAuditReport, PolicyDecision } from "@latch/core";
+import { auditPackage, evaluatePolicy, formatHumanReport, loadPolicy, runNpmExec } from "latch-core";
+import type { LatchAuditReport, PolicyDecision } from "latch-core";
 import { clearCache, formatCacheStatus, getCacheStatus, getDefaultCachePath } from "./cacheCommands.js";
 import { formatDoctorReport, runDoctor } from "./doctor.js";
 import { planAfterAudit } from "./flow.js";

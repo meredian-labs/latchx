@@ -212,8 +212,8 @@ npm run typecheck
 npm run build
 npm test
 npm run demo:latchx
-npm pack -w @latch/core --dry-run
-npm pack -w @latch/latchx --dry-run
+npm pack -w latch-core --dry-run
+npm pack -w latchx --dry-run
 ```
 
 Global install smoke-test steps are documented in `docs/release/latchx-v0.1.md`.
