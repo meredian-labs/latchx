@@ -1,0 +1,30 @@
+{
+  "name": "latchx-repo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Source repository for latchx, a safer npx replacement that audits npm packages before execution.",
+  "type": "module",
+  "workspaces": [
+    "packages/core",
+    "packages/latchx"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "typecheck": "npm run build -w @latch/core && npm run typecheck -w @latch/latchx",
+    "test": "npm run test --workspaces",
+    "pack:latchx": "npm pack -w @latch/latchx --dry-run",
+    "dev:latchx": "npm run dev -w @latch/latchx",
+    "demo:latchx": "npm run build -w @latch/core && npm run build -w @latch/latchx && node packages/latchx/dist/index.js doctor && node packages/latchx/dist/index.js audit is-number --ci --no-cache && node packages/latchx/dist/index.js inspect is-number --json --ci"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3",
+    "vitest": "^1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/meredian-labs/latchx.git"
+  },
+  "license": "MIT"
+}

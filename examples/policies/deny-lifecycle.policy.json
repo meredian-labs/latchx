@@ -1,0 +1,8 @@
+{
+  "denyLifecycleScripts": true,
+  "denyNewLifecycleScripts": true,
+  "denyLikelyObfuscation": true,
+  "allowedRegistries": [
+    "https://registry.npmjs.org"
+  ]
+}

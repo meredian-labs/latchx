@@ -1,0 +1,5 @@
+{
+  "denyPackages": [
+    "is-number"
+  ]
+}
