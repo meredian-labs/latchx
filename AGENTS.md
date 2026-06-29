@@ -135,7 +135,19 @@ latchpm audit is-number --json --ci --policy ./latch.policy.json
 
 ## Required Development Checks
 
-Use npm only.
+Use `latchpm` and `latchx` as the default daily local workflow:
+
+```bash
+latchpm install
+latchpm ci
+latchpm run test --yes
+latchpm npm <args...>
+latchx <package> -- [...args]
+```
+
+Use plain `npm` only for bootstrap, release, publish, and repo maintenance commands where `latchpm` intentionally delegates or does not implement full npm replacement behavior.
+
+Required release checks:
 
 ```bash
 npm install

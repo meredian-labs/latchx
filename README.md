@@ -57,6 +57,33 @@ npm run demo:latchx
 npm run demo:latchpm
 ```
 
+## Default Daily Workflow
+
+Use `latchpm` and `latchx` as the default local package workflow for this repo:
+
+```bash
+latchpm install              # audit direct dependencies, then npm install after approval
+latchpm ci                   # audit direct dependencies, then npm ci after approval
+latchpm install zod          # audit exact package, then install exact inspected version
+latchpm remove zod           # show npm uninstall command, then delegate
+latchpm run test --yes       # show script command, then delegate to npm run
+latchpm npm view react version
+latchx cowsay -- hello       # audit before running a package command
+```
+
+Repo helper scripts:
+
+```bash
+npm run daily:doctor
+npm run daily:install
+npm run daily:ci
+npm run daily:test
+npm run daily:npm -- view react version
+npm run daily:x -- cowsay -- hello
+```
+
+`latchpm npm <args...>` is the explicit escape hatch for unsupported npm commands. It prints that no Latch audit is applied before delegating.
+
 ## Repository Structure
 
 ```txt
@@ -194,6 +221,7 @@ Use `--no-cache` to force a fresh audit.
 - No sandboxing yet.
 - No full package-manager implementation yet.
 - No full project-level install auditing yet.
+- `latchpm install` and `latchpm ci` audit direct dependencies only in this version.
 - `latchx` does not yet implement every `npm exec` compatibility mode such as `--package/-p` or multi-package execution.
 - Static scanning can miss behavior and can produce false positives.
 - Minified or bundled code can be difficult to classify precisely.
