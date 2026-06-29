@@ -1,8 +1,8 @@
 # Latch
 
-Latch is a local-first safety layer for JavaScript package execution and installation.
+Latch is a local-first package preflight layer for JavaScript developers.
 
-The first published product is `latchx`: a safer `npx`-style CLI that audits an npm package before any package code runs. The current build milestone is `latchpm`: a safer `npm install` wrapper that audits before installation.
+`latchx` audits before `npx`-style execution. `latchpm` audits before npm-style installation.
 
 Both tools answer practical questions before package-controlled code can affect the machine:
 
@@ -50,7 +50,7 @@ During local development:
 npm run dev:latchx -- audit is-number
 ```
 
-Run the safe demo:
+Run the local demos:
 
 ```bash
 npm run demo:latchx
