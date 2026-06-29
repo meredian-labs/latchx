@@ -12,3 +12,4 @@ build/
 *.log
 LATCH_SOURCE_OF_TRUTH.md
 packages/core/
+packages/latchpm/

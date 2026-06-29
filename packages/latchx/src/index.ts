@@ -144,6 +144,7 @@ function addCacheCommands(): void {
 async function handlePackage(mode: CommandMode, packageSpec: string, packageArgs: string[], options: GlobalOptions): Promise<void> {
   const report = await auditPackage(packageSpec, {
     tool: "latchx",
+    action: mode,
     registryUrl: options.registry,
     noCache: shouldBypassCache(options)
   });

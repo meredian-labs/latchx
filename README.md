@@ -2,7 +2,9 @@
 
 Latch is a local-first safety layer for JavaScript package execution and installation.
 
-The first product is `latchx`: a safer `npx`-style CLI that audits an npm package before any package code runs. It answers practical questions before execution:
+The first published product is `latchx`: a safer `npx`-style CLI that audits an npm package before any package code runs. The current build milestone is `latchpm`: a safer `npm install` wrapper that audits before installation.
+
+Both tools answer practical questions before package-controlled code can affect the machine:
 
 - What package and version will run?
 - Who published it?
@@ -38,6 +40,8 @@ npm run build
 node packages/latchx/dist/index.js audit is-number
 node packages/latchx/dist/index.js inspect create-vite
 node packages/latchx/dist/index.js run cowsay -- hello
+node packages/latchpm/dist/index.js audit zod
+node packages/latchpm/dist/index.js install zod
 ```
 
 During local development:
@@ -50,6 +54,7 @@ Run the safe demo:
 
 ```bash
 npm run demo:latchx
+npm run demo:latchpm
 ```
 
 ## Repository Structure
@@ -59,6 +64,7 @@ latch/
   packages/
     core/      shared audit, scanner, risk, cache, policy, and report logic
     latchx/    safer npx replacement CLI
+    latchpm/   safer npm install wrapper CLI
   examples/
     policies/ ready-to-use policy examples
     reports/  report generation notes
@@ -66,7 +72,7 @@ latch/
     release/ release and global install smoke-test docs
 ```
 
-The repository is intentionally scoped to `latchx`. Contributions should keep shared logic in `packages/core` and avoid duplicating registry, tarball, scanner, risk, cache, or policy behavior inside the CLI package.
+The repository is currently scoped to local-first `latchx` and `latchpm` surfaces. Contributions should keep shared logic in `packages/core` and avoid duplicating registry, tarball, scanner, risk, cache, or policy behavior inside CLI packages.
 
 ## Human Usage
 
@@ -82,6 +88,8 @@ Run after approval:
 ```bash
 latchx run cowsay -- hello
 latchx cowsay -- hello
+latchpm install zod
+latchpm add zod
 ```
 
 Check local readiness:
@@ -96,6 +104,7 @@ Manage cache:
 latchx cache status
 latchx cache path
 latchx cache clear
+latchpm cache status
 ```
 
 ## CI And Agent Usage
@@ -104,6 +113,8 @@ CI mode is deterministic and never prompts.
 
 ```bash
 latchx audit create-vite --json --ci --policy ./latch.policy.json
+latchpm audit zod --json --ci --policy ./latch.policy.json
+latchpm install zod --json --ci
 ```
 
 Exit codes:
@@ -179,8 +190,10 @@ Use `--no-cache` to force a fresh audit.
 ## Limitations
 
 - No backend or shared reputation service yet.
+- No Cloud, registry/proxy, or marketplace yet.
 - No sandboxing yet.
 - No full package-manager implementation yet.
+- No full project-level install auditing yet.
 - `latchx` does not yet implement every `npm exec` compatibility mode such as `--package/-p` or multi-package execution.
 - Static scanning can miss behavior and can produce false positives.
 - Minified or bundled code can be difficult to classify precisely.
@@ -212,8 +225,10 @@ npm run typecheck
 npm run build
 npm test
 npm run demo:latchx
+npm run demo:latchpm
 npm pack -w latch-core --dry-run
 npm pack -w @meredian-labs/latchx --dry-run
+npm pack -w @meredian-labs/latchpm --dry-run
 ```
 
-Global install smoke-test steps are documented in `docs/release/latchx-v0.1.md`.
+Global install smoke-test steps are documented in `docs/release/latchx-v0.1.md` and `docs/release/latchpm-v0.1.md`.
